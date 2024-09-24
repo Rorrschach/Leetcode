@@ -51,3 +51,43 @@ Constraints:
 0 <= nums[i] <= 50
 0 <= val <= 100
 """
+def removeElement(self, nums, val):
+    """
+    :type nums: List[int]
+    :type val: int
+    :rtype: int
+    """
+
+    replaced = False
+    idx = [i for i, v in enumerate(nums) if v == val]
+    if len(idx) > 0:
+        replaced = True
+    for i in idx:
+        nums[i] = float('inf')
+    
+    nums.sort()
+    
+    if replaced:
+        return len(nums[:nums.index(float('inf'))])
+    else:
+        return len(nums)
+    
+
+nums = [3,2,2,3]
+val = 3
+
+print(removeElement(None,nums, val))
+print(nums)
+    
+    
+"""
+OPTIMIZED APROACH
+def removeElement(nums, val):
+    k = 0  # Pointer to track the position of non-val elements
+    for i in range(len(nums)):
+        if nums[i] != val:
+            nums[k] = nums[i]
+            k += 1
+    return k  # Return the number of elements that are not val
+
+"""
